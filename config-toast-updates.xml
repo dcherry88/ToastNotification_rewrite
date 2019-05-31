@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Feature Name="Toast" Enabled="True" /> <!-- Enables or disables the entire toast notification -->
+	<Feature Name="UpgradeOS" Enabled="False" />	<!-- Specifies if the toast is used for OS upgrades. If set to True, the targetOS build is taking into account -->
+	<Feature Name="PendingRebootUptime" Enabled="False" />	<!-- Enables the toast for reminding users of restarting their device if it exceeds the uptime defined in MaxUptimeDays -->
+	<Feature Name="PendingRebootCheck" Enabled="False" />	<!-- Enables the toast for reminding users of pending reboots found in registry/WMI -->
+	<Feature Name="RecentDeadlineCheck" Enabled="True" /> <!-- Enables the toast for reminding users of upcoming or recently passed Update deadline via SCCM -->
+	<Option Name="TargetOS" Build="18351" />	<!-- The actual build number of the targeted OS. 18351 = 1903 | 17763 = 1809. This option has no effect if OSUpgrade is set to False -->
+	<Option Name="MaxUptimeDays" Value="-3" />	<!-- When using the toast for checking for pending reboots. A reboot is considered pending if computer uptime exceeds the value set here -->
+	<Option Name="PendingRebootUptimeText" Enabled="False" Value="Your computer is required to restart due to having exceeded the maximum allowed uptime." />	<!-- Adds an additional group to the toast with text about the uptime of the computer -->
+	<Option Name="PendingRebootCheckText" Enabled="False" Value="Reason: Pending reboots was found in registry or WMI." />	<!--  -->
+	<Option Name="Deadline" Enabled="False" Value="5 June 2019" />	<!-- Adds an additional group to the toast with text about the deadline of the OSUpgrade -->
+	<Option Name="UseSoftwareCenterApp" Enabled="True" />	<!-- The app in Windows doing the action notification - can't be both SoftwareCenter and Powershell -->
+	<Option Name="UsePowershellApp" Enabled="False" />	<!-- The app in Windows doing the action notification - can't be both SoftwareCenter and Powershell -->
+	<Option Name="CustomAudio" Enabled="False" TextToSpeech="Hey you - wake up. Your computer needs to restart. Do it now."/>
+	<Option Name="ActionButton" Enabled="True" Value="Let's Install!" />	<!-- Enables or disables the action button. Value is equal to the name displayed on the button -->
+	<Option Name="DismissButton" Enabled="True" Value="Not now" />	<!-- Enables or disables the dismiss button. Value is equal to the name displayed on the button -->
+	<Option Name="SnoozeButton" Enabled="False" Value="Snooze" /> <!-- Enabling this option will always enable action button and dismiss button -->
+	<Option Name="Scenario" Type="reminder" />	<!-- Possible values are: reminder | short | long -->
+	<Option Name="Action" Value="softwarecenter:Page=Updates" />	<!-- Action taken when using the ActionButton. Should currently be nothing when used with PendingRebootCheck. Can be link to SoftwareCenter if used with UpgradeOS -->
+	<Text Name="AttributionText">Jack Henry Service Center</Text>
+	<Text Name="HeaderText">Pending Updates</Text>
+	<Text Name="TitleText">You have Updates to install!</Text>
+	<Text Name="BodyText1">For security and reliability, you must install the current month Updates and perform a restart.</Text>
+	<Text Name="BodyText2">You have a deadline approaching within 24hrs. Install now if it's convenient!</Text>
+</Configuration>
